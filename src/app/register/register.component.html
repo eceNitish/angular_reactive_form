@@ -1,0 +1,92 @@
+<nav>
+  <div class="nav-wrapper">
+    <div class="container"><a class="brand-logo">Student Registration</a></div>
+
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col s12 m7">
+      <div class="card">
+        <div class="row" style="padding: 20px;">
+
+          <form class="col s12" [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+            <small class="red-text" *ngIf="!reactiveForm.valid">All fields are required!</small>
+
+            <div class="row">
+
+              <div class="input-field col s6">
+                <input id="first_name" type="text" class="validate" formControlName="firstName">
+                <label for="first_name">First Name</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="last_name" type="text" class="validate" formControlName="lastName">
+                <label for="last_name">Last Name</label>
+              </div>
+            </div>
+
+
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="email" type="email" class="validate" formControlName="email">
+                <label for="email">Email</label>
+                <small *ngIf="!reactiveForm.get('email').valid && reactiveForm.get('email').touched" class="red-text">Invalid Email</small>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" type="password" class="validate" formControlName="password">
+                <label for="password">Password</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <p><label for="gender">Gender : </label>
+                  <label style="margin-left: 15px;">
+                    <input class="with-gap" formControlName="gender" type="radio" value="male" />
+                    <span>Male</span>
+                  </label>
+                  <label style="margin-left: 15px;">
+                    <input class="with-gap" formControlName="gender" type="radio" value="female" />
+                    <span>Female</span>
+                  </label>
+                  <label style="margin-left: 15px;">
+                    <input class="with-gap" formControlName="gender" type="radio" value="other" />
+                    <span>Other</span>
+                  </label>
+                </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <button [disabled]="!reactiveForm.valid" class="btn-large btn-submit">Register</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div *ngIf="studentsData.length">
+
+      <table>
+        <tr *ngFor="let student of studentsData; index as i">
+          <td>
+            {{student.firstName}}
+          </td>
+          <td>
+            <button (click)="removeThis(i)">Remove</button>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+</div>
