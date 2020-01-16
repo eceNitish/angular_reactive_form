@@ -74,12 +74,12 @@
     </div>
   </div>
   <div>
-    <div *ngIf="studentsData.length">
+    <div *ngIf="!null">
 
       <table>
         <tr *ngFor="let student of studentsData; index as i">
           <td>
-            {{student.firstName}}
+            {{student.firstName}} {{student.lastName}}
           </td>
           <td>
             <button (click)="removeThis(i)">Remove</button>

@@ -10,24 +10,24 @@ import { Registration } from './register.model';
 export class RegisterComponent implements OnInit {
 
   student: Registration;
-  studentsData = [
+  studentsData : Registration[] = [
     {
       firstName: 'Nitish',
-      lastName: 'kumar',
-      email: 'a@b',
+      lastName: 'Kumar',
+      email: 'ola2nitish@gmail.com',
       password: 'abc',
       gender: 'male'
     },
     {
-      firstName: 'Ana',
-      lastName: 'kur',
+      firstName: 'Sumit',
+      lastName: 'Singh',
       email: 'a@bwe',
       password: 'abca',
       gender: 'female'
     },
     {
       firstName: 'Rohan',
-      lastName: 'singh',
+      lastName: 'Singh',
       email: 'r@b',
       password: 'asdbc',
       gender: 'male'
@@ -36,7 +36,8 @@ export class RegisterComponent implements OnInit {
 
   reactiveForm: FormGroup;
 
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit() {
     this.reactiveForm = new FormGroup({
