@@ -47,8 +47,12 @@ export class RegisterComponent implements OnInit {
       'password': new FormControl(null, [Validators.required]),
       'gender': new FormControl(null, Validators.required)
     });
+    if(localStorage.getItem('mem')==null){
 
-    this.studentsData = JSON.parse(localStorage.getItem('mem'));
+    }else{
+      this.studentsData = JSON.parse(localStorage.getItem('mem'));
+    }
+    
   }
 
   onSubmit() {
