@@ -1,0 +1,36 @@
+<div class="container">
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>First_Name</th>
+          <th>Last_Name</th>
+          <th>Gender</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tr>
+          <p *ngIf="!studentsData.length">No Data Found!!</p>
+      </tr>
+      <tr *ngFor="let student of studentsData; index as i">
+        <td>
+          {{student.firstName}}
+        </td>
+        <td>
+          {{student.lastName}}
+        </td>
+        <td>
+          {{student.gender}}
+        </td>
+        <td>
+          {{student.email}}
+        </td>
+        <td>
+          <button (click)="removeThis(i)">Remove</button>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+</div>

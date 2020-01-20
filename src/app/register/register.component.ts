@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Registration } from './register.model';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-register',
@@ -11,35 +12,17 @@ export class RegisterComponent implements OnInit {
 
   student: Registration;
   studentsData : Registration[] = [
-    {
-      firstName: 'Nitish',
-      lastName: 'Kumar',
-      email: 'ola2nitish@gmail.com',
-      password: 'abc',
-      gender: 'male'
-    },
-    {
-      firstName: 'Sumit',
-      lastName: 'Singh',
-      email: 'a@bwe',
-      password: 'abca',
-      gender: 'female'
-    },
-    {
-      firstName: 'Rohan',
-      lastName: 'Singh',
-      email: 'r@b',
-      password: 'asdbc',
-      gender: 'male'
-    }
+    
   ];
 
   reactiveForm: FormGroup;
 
-  constructor() {
+  constructor(private svc : SharedService) {
+    console.log("Register component loaded!");
    }
 
   ngOnInit() {
+
     this.reactiveForm = new FormGroup({
       'firstName': new FormControl(null, Validators.required),
       'lastName': new FormControl(null, Validators.required),
@@ -65,15 +48,17 @@ export class RegisterComponent implements OnInit {
       gender: this.reactiveForm.value.gender
     }
 
-    this.studentsData.push(this.student);
-    localStorage.setItem('mem', JSON.stringify(this.studentsData));
+    this.svc.setItem(this.studentsData, this.student);
     this.reactiveForm.reset();
-    // console.log(this.student);
   }
 
   removeThis(i) {
-    this.studentsData.splice(i, 1);
-    localStorage.setItem('mem', JSON.stringify(this.studentsData));
+    this.svc.deleteItem(this.studentsData, i);
   }
+
+  clearAll() {
+    this.svc.clearAll();
+  }
+
 
 }
