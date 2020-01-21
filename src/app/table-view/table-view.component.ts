@@ -9,19 +9,36 @@ import { Registration } from '../register/register.model';
 })
 export class TableViewComponent implements OnInit {
 
-  studentsData;
+  studentsData : Registration[];
 
   constructor(private svc : SharedService) { 
     console.log("Table-view component loaded!");
   }
 
   ngOnInit() {
+    if(localStorage.getItem('mem')==null){
+      this.studentsData = [];
+    }else{
+      this.studentsData = JSON.parse(this.svc.getItems());
+    }
     
-    this.studentsData = JSON.parse(this.svc.getItems());
+    // this.studentsData = JSON.parse(this.svc.getItems());
+  }
+
+  ngDoCheck() {
+    if(localStorage.getItem('mem')==null){
+      this.studentsData = [];
+    }else{
+      this.studentsData = JSON.parse(this.svc.getItems());
+    }
   }
 
   removeThis(i) {
     this.svc.deleteItem(this.studentsData, i);
+  }
+
+  removeAll() {
+    this.svc.clearAll();
   }
 
 }
