@@ -15,14 +15,8 @@ export class TableViewComponent implements OnInit {
     console.log("Table-view component loaded!");
   }
 
-  ngOnInit() {
-    if(localStorage.getItem('mem')==null){
-      this.studentsData = [];
-    }else{
-      this.studentsData = JSON.parse(this.svc.getItems());
-    }
+  ngOnInit(){
     
-    // this.studentsData = JSON.parse(this.svc.getItems());
   }
 
   ngDoCheck() {
